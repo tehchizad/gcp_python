@@ -9,8 +9,7 @@ def list_blobs(bucket_name):
     counter = 0
     for blob in blobs:
         counter += 1
-
-    print("Object Count: {}".format(counter))
+    return counter
 
 
 def list_buckets():
@@ -18,8 +17,8 @@ def list_buckets():
     buckets = storage_client.list_buckets()
 
     for bucket in buckets:
-        print("Bucket: {}".format(bucket.name))
-        list_blobs(bucket.name)
+        count = list_blobs(bucket.name)
+        print("Bucket {} has {} objects.".format(bucket.name, count))
 
 
 list_buckets()
