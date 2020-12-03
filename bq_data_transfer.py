@@ -1,16 +1,27 @@
+# Modified version of the python example for "scheduled query"
+# https://cloud.google.com/bigquery/docs/scheduling-queries#setting_up_a_scheduled_query
+#
+# Current cli user must be authenticated and have the propper authrorization to BQDT
+
 from google.cloud import bigquery_datatransfer
 
 client = bigquery_datatransfer.DataTransferServiceClient()
 
-parent = f"projects/PROJECT_ID"
+# TODO: Replace variables before attempting
+project = ''
+source_dataset_id = ''
+destination_dataset_id = ''
+display_name = 'Python Data Transfer final'
+
+parent = f"projects/{project}"
 
 transfer_config = bigquery_datatransfer.TransferConfig(
-    destination_dataset_id='DESTINATION_DATASET',
-    display_name='Python Data Transfer',
+    destination_dataset_id=destination_dataset_id,
+    display_name=display_name,
     data_source_id="cross_region_copy",
     params={
-        "source_dataset_id": "SOURCE_DATASET",
-        "source_project_id": "PROJECT_ID",
+        "source_dataset_id": source_dataset_id,
+        "source_project_id": project,
         "overwrite_destination_table": "true"
     },
 )
