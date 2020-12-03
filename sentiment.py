@@ -10,17 +10,12 @@ def sample_analyze_entity_sentiment(text_content):
     type_ = language_v1.Document.Type.PLAIN_TEXT
 
     # Optional. If not specified, the language is automatically detected.
-    # For list of supported languages:
-    # https://cloud.google.com/natural-language/docs/languages
+    # For list of supported languages: https://cloud.google.com/natural-language/docs/languages
     language = "en"
 
-    """ The 'document' variable is totally different """
-    """ DEPRECATED:"""
-    # document = {"content": text_content, "type": type_, "language": language}
-
-    """ MODIFIED:"""
-    document = language_v1.Document(
-        content=text_content, type_=language_v1.Document.Type.PLAIN_TEXT)
+    # NOTE: The 'document' variable is different than the quicktart
+    # https://cloud.google.com/natural-language/docs/analyzing-sentiment#analyzing_sentiment_in_a_string
+    document = language_v1.Document(content=text_content, type_=type_)
 
     encoding_type = language_v1.EncodingType.UTF8
 
@@ -62,9 +57,6 @@ def sample_analyze_entity_sentiment(text_content):
                     language_v1.EntityMention.Type(mention.type_).name)
             )
 
-    # Get the language of the text, which will be the same as
-    # the language specified in the request or, if not specified,
-    # the automatically-detected language.
     print(u"Language of the text: {}".format(response.language))
 
 

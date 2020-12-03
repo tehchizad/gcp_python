@@ -1,3 +1,5 @@
+# Lists the # of objects in all buckets in the project of the currently authenticated user
+
 from google.cloud import storage
 
 storage_client = storage.Client()
